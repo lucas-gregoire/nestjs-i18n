@@ -14,6 +14,12 @@ export function getContextObject(
       return context.getArgs()[2];
     case 'rpc':
       return context.switchToRpc().getContext();
+    case 'rmq':
+      // https://github.com/toonvanstrijp/nestjs-i18n/issues/403
+      // https://github.com/toonvanstrijp/nestjs-i18n/issues/581
+      // https://github.com/toonvanstrijp/nestjs-i18n/issues/568
+      // https://github.com/toonvanstrijp/nestjs-i18n/issues/590
+      return context.getArgs()[1];
     default:
       logger.warn(`context type: ${contextType} not supported`);
   }
